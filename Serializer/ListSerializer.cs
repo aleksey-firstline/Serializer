@@ -70,9 +70,11 @@ namespace Serializer
             var nodeCount = BitConverter.ToInt32(bytes, 0);
 
             var nodes = new Dictionary<int, ListNode>();
+
+            var i = 0;
             while (s.Position < s.Length)
             {
-                for (var i = 0; i < nodeCount; i++)
+                while (nodeCount > i)
                 {
                     var note = new ListNode();
 
@@ -95,6 +97,7 @@ namespace Serializer
                     }
 
                     nodes.Add(index, note);
+                    i++;
                 }
 
                 if (s.Position < s.Length)
